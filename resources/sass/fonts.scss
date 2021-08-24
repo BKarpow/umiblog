@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;700&family=Roboto:wght@300;400;500&display=swap');
+
+body{
+    font-family: 'Comfortaa', cursive;
+
+}
+
+.roboto{
+    font-family: 'Roboto', sans-serif;
+}
+
+@font-face {
+    font-family: "summernote";
+    font-style: normal;
+    font-weight: 400;
+    font-display:auto;
+    /* Браузер сначала попробует найти шрифт локально */
+    src: local("summernote"),
+        /* Если не получилось, загрузит woff2 */
+    url("/fonts/summernote.woff2") format("woff2"),
+        /* Если браузер не поддерживает woff2, загрузит woff */
+    url("/fonts/summernote.woff") format("woff");
+}
