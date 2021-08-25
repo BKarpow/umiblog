@@ -53,3 +53,10 @@ Route::post('/tag/create', [App\Http\Controllers\TagController::class, 'create']
     ->name('api.tag.create');
 
 Route::post('/menu/positions', [App\Http\Controllers\MenuController::class, 'getPositions']);
+
+Route::group([
+    'prefix' => '/menu'
+], function () {
+    Route::get('/get', [App\Http\Controllers\MenuController::class, 'getMenu'])
+        ->name('api.menu.get');
+});

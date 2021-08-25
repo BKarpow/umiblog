@@ -18,31 +18,7 @@
             </svg>
         </div>
         <!-- /.close__box -->
-        <ul class="burger__body-list">
-            @if (isset($leftMenu))
-                @foreach($leftMenu as $item)
-                    <li>
-                        <a
-                            href="{{$item->href()}}"
-                            target="{{$item->target}}"
-                        >{{$item->title}}</a>
-                    </li>
-                @endforeach
-            @else
-            <li>
-                <a href="#">Item 1</a>
-            </li>
-            <li>
-                <a href="#">Item 1</a>
-            </li>
-            <li>
-                <a href="#">Item 1</a>
-            </li>
-            <li>
-                <a href="#">Item 1</a>
-            </li>
-            @endif
-        </ul>
+        <menu-header></menu-header>
         <!-- /.burger__body-list -->
     </div>
     <!-- /.burger__body -->

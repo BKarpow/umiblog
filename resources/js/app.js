@@ -29,6 +29,7 @@ Vue.component('source-field', require('./components/SourceFields.vue').default);
 Vue.component('check-box', require('./components/CheckBox.vue').default);
 Vue.component('load-image', require('./components/LoadImage.vue').default);
 Vue.component('cart-panel', require('./components/CartPanel.vue').default);
+Vue.component('menu-header', require('./components/MenuHeader.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

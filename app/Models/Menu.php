@@ -21,4 +21,17 @@ class Menu extends Model
             return $this->href;
         }
     }
+
+    /**
+     * Сформує таргет рядок для посилання. Підійде для прямого включення в атрибут а > target
+     * @return string
+     */
+    public function target():string
+    {
+        $r = '';
+        if ((bool)$this->target) {
+            $r = '_blank';
+        }
+        return $r;
+    }
 }

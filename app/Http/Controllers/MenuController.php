@@ -15,6 +15,17 @@ class MenuController extends Controller
         $this->service = new MenuService();
     }
 
+    function getMenu(Request $request)
+    {
+        $request->validate([
+            'nameMenu' => 'required|string|max:50|min:4',
+        ]);
+        $data = $this->service->formatToApi(
+            $this->service->getItemsFromNameMenu($request->nameMenu) );
+        return response()
+            ->json(new ApiResponse(true, '', $data));
+    }
+
     function index()
     {
         return view('panel.menu.index', [

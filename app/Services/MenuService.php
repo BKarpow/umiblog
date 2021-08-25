@@ -100,4 +100,27 @@ class MenuService extends BaseService
         return  $this->delete(Menu::class, $id);
     }
 
+    /**
+     * Сформує відповідь яка підійде для json response from api
+     * @param $data
+     * @return array
+     */
+    public function formatToApi($data):array
+    {
+        $result = [];
+        if ($data) {
+            foreach ($data as $datum) {
+                $bufferArray = [];
+                $bufferArray['id'] = (int)$datum->id;
+//                $bufferArray['name_menu'] = $datum->name_menu;
+//                $bufferArray['alias_menu'] = $datum->alias_menu;
+                $bufferArray['href'] = $datum->href();
+                $bufferArray['title'] = $datum->title;
+                $bufferArray['target'] = $datum->target;
+                $result[] = $bufferArray;
+            }
+        }
+        return $result;
+    }
+
 }
