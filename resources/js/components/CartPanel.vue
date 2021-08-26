@@ -177,6 +177,7 @@ methods: {
             margin-bottom: .5rem;
             font-family: sans-serif;
             font-weight: bold;
+            font-size: 20px;
         }
     }
 }

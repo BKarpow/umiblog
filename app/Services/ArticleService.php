@@ -178,7 +178,11 @@ class ArticleService extends BaseService
     public function getArticle(string $url)
     {
         $idArticle = abs( (int)$url );
-        return Article::find($idArticle);
+        $article = Article::find($idArticle);
+        if ($article) {
+            $article->increment('views');
+        }
+        return $article;
     }
 
     /**
