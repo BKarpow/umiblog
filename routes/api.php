@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,4 +62,9 @@ Route::group([
         ->name('api.menu.get');
 });
 
-
+Route::group([
+    'prefix' => '/comment'
+], function(){
+    Route::get('/get', [CommentController::class, 'show'])
+        ->name('api.comment.get');
+});

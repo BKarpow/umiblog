@@ -53,9 +53,7 @@
                     </footer>
                 </article>
                 <div id="comments" class="mt-2 p-1">
-                    <create-comment
-                        article-id="{{$article->id}}"
-                    ></create-comment>
+                    <comments article-id="{{$article->id}}" ></comments>
                 </div>
                 <!-- /#comments.mt-2 -->
             </div>

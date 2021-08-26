@@ -30,9 +30,11 @@ class CommentController extends Controller
             'article_id' => 'required|exists:articles,id',
         ]);
         $comments = $this->service->getCommentsFromArticle($request->article_id);
+
         if ($comments) {
+            $comments = $this->service->formatFromApi($comments);
             return response()->json(
-                new ApiResponse(true, 'Getting comments', $comments->toArray())
+                new ApiResponse(true, 'Getting comments', $comments)
             );
         } else {
             return response()->json(

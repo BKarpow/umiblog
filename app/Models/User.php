@@ -81,4 +81,13 @@ class User extends Authenticatable
         }
         return '';
     }
+
+    /**
+     * Поверне посилання на зображення користувача
+     * @return string
+     */
+    public function getAvatar():string
+    {
+        return '';
+    }
 }

@@ -31,6 +31,7 @@ Vue.component('load-image', require('./components/LoadImage.vue').default);
 Vue.component('cart-panel', require('./components/CartPanel.vue').default);
 Vue.component('menu-header', require('./components/MenuHeader.vue').default);
 Vue.component('create-comment', require('./components/CreateComment.vue').default);
+Vue.component('comments', require('./components/Comments.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

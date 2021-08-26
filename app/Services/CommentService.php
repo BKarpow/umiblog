@@ -58,6 +58,26 @@ class CommentService extends BaseService
     {
         $articleId = abs( (int)$articleId );
         return Comment::whereArticleId($articleId)
-            ->orderBy('created_at', 'desc')->paginate(35);
+            ->orderBy('created_at', 'desc')->get();
+    }
+
+    /**
+     * Формує масив для апі
+     * @param $collections
+     * @return array
+     */
+    public function formatFromApi($collections):array
+    {
+        $data = [];
+        foreach ($collections as $item) {
+            $data[] = [
+                'id' => $item->id,
+                'avatar' => $item->author->getAvatar(),
+                'author' => $item->author->name,
+                'comment' => $item->comment,
+                'created_at' => $item->created_at->format('d-m-Y H:i'),
+            ];
+        }
+        return $data;
     }
 }
