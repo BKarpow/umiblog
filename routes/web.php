@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SitemapXmlController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,9 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+
+Route::get('sitemap-articles.xml', [SitemapXmlController::class, 'article'])
+    ->name('sitemap.articles');
 
 Route::group([
     'prefix' => '/ajax'
