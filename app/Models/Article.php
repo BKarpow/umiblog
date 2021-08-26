@@ -40,6 +40,13 @@ class Article extends Model
             if (isset($item['name'])) {
                 $tag = ($_SESSION['icon_tag']) ?  TagService::svgIcon().$item['name'] : $item['name'];
                 return $_SESSION['before_tag'] . $tag . $_SESSION['after_tag'];
+            } elseif (!empty($item) && is_string($item)) {
+                $name = TagService::getNameTagFromAlias($item);
+                if (empty($name) ) {
+                    return '';
+                }
+                $tag = ($_SESSION['icon_tag']) ?  TagService::svgIcon().$name : $name;
+                return $_SESSION['before_tag'] . $tag . $_SESSION['after_tag'];
             } else {
                 return '';
             }
@@ -68,5 +75,49 @@ class Article extends Model
     {
         $text = (string)$this->id . '-' . $this->url.'.html';
         return route('article.show', ['url'=>$text]);
+    }
+
+    /**
+     * Повертає сформовану дату публікації для статті
+     * @return string
+     */
+    public function getCreateDate():string
+    {
+        return $this->created_at->format('Y-m-d H:i');
+    }
+
+    /**
+     * Поверне імя автора статті
+     * @return string
+     */
+    public function getAuthorName():string
+    {
+        return $this->author->name;
+    }
+
+    /**
+     * Метод звязку з таблицею користувачів
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function author()
+    {
+        return $this->hasOne('\App\Models\User', 'id', 'author_id');
+    }
+
+    /**
+     * Поверне список посилань для тегів статті
+     * @return string
+     */
+    public function getTagsString():string
+    {
+        $tagsString = '';
+        $tags = json_decode($this->tags, true);
+        if (!empty($tags)) {
+            foreach ($tags as $tag) {
+                $href = route('article.tag', ['tag' => $tag]);
+                $tagsString .= "<a href='{$href}'>{$tag}</a>".PHP_EOL;
+            }
+        }
+        return $tagsString;
     }
 }

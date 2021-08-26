@@ -54,4 +54,19 @@ class TagService extends BaseService
                   <path d="M1.293 7.793A1 1 0 0 1 1 7.086V2a1 1 0 0 0-1 1v4.586a1 1 0 0 0 .293.707l7 7a1 1 0 0 0 1.414 0l.043-.043-7.457-7.457z"/>
                 </svg>';
     }
+
+    /**
+     * Метод поверне імя тегу по його аліасу
+     * @param string $aliasTag
+     * @return string
+     */
+    static public function getNameTagFromAlias(string $aliasTag):string
+    {
+        $tagName = '';
+        $tag = Tag::where('alias', $aliasTag)->first();
+        if ($tag) {
+            $tagName = (string)$tag->name;
+        }
+        return $tagName;
+    }
 }

@@ -33,6 +33,12 @@ class BaseService
      */
     protected string $methodOrderBy;
 
+    /**
+     * Колонка по які буде сортуватися
+     * @var string
+     */
+    protected string $columnOrderBy;
+
 
     /**
      * @param bool $enablePaginate
@@ -145,6 +151,22 @@ class BaseService
         } else {
             return false;
         }
+    }
+
+    /**
+     * @return string
+     */
+    public function getColumnOrderBy(): string
+    {
+        return $this->columnOrderBy;
+    }
+
+    /**
+     * @param string $columnOrderBy
+     */
+    public function setColumnOrderBy(string $columnOrderBy): void
+    {
+        $this->columnOrderBy = $columnOrderBy;
     }
 
 }

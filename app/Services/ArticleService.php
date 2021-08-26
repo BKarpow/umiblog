@@ -18,6 +18,7 @@ class ArticleService extends BaseService
         $this->perPagesPaginate = 10; // кількісит сикивй на сторінці
         $this->enableOrderBy = true;
         $this->methodOrderBy = 'DESC';
+        $this->setColumnOrderBy('created_at');
     }
 
     /**
@@ -71,6 +72,19 @@ class ArticleService extends BaseService
         ]);
     }
 
+    private function formatterTags(string $tags):string
+    {
+        $tags = json_decode($tags, true);
+        if (!empty($tags)) {
+            $data = [];
+            foreach ($tags as $tag) {
+                $data[] = $this->translit($tag['name']);
+            }
+            $tags = $data;
+        }
+        return json_encode($tags);
+    }
+
     /**
      * Метод створить нову статтю в базі
      * @param array $data
@@ -86,7 +100,7 @@ class ArticleService extends BaseService
             $article->short_content = $data['short_content'];
         }
         $article->content = $data['content'];
-        $article->tags =   $data['tags'];
+        $article->tags =   $this->formatterTags( $data['tags']);
         if (!empty($data['source_main'])) {
             $article->source_main = $data['source_main'];
         }
@@ -154,5 +168,43 @@ class ArticleService extends BaseService
         return Article::wherePublic(true)
             ->orderBy('created_at', 'desc')
             ->paginate($this->getPerPagesPaginate());
+    }
+
+    /**
+     * Поверне статтю по її ід яке прописано першим в урл
+     * @param string $url
+     * @return mixed
+     */
+    public function getArticle(string $url)
+    {
+        $idArticle = abs( (int)$url );
+        return Article::find($idArticle);
+    }
+
+    /**
+     * Поаерне список статей для певного тегу
+     * @param string $tagName
+     * @return mixed
+     */
+    public function getArticlesFromTag(string $tagName):mixed
+    {
+        $res = '';
+        $alias = $this->translit($tagName);
+        if ($this->isEnablePaginate() && !$this->isEnableOrderBy()) {
+            $res = Article::whereJsonContains('tags', $alias)
+                ->paginate($this->getPerPagesPaginate());
+        } elseif (!$this->isEnablePaginate() && $this->isEnableOrderBy()) {
+            $res = Article::whereJsonContains('tags', $alias)
+                ->orderBy($this->getColumnOrderBy(),
+                $this->getMethodOrderBy())->get();
+        } elseif ($this->isEnablePaginate() && $this->isEnableOrderBy()) {
+            $res = Article::whereJsonContains('tags', $alias)
+                ->orderBy($this->getColumnOrderBy(),
+                    $this->getMethodOrderBy())->paginate($this->getPerPagesPaginate());
+        } else {
+            $res = Article::whereJsonContains('tags', $alias)
+                ->get();
+        }
+        return $res;
     }
 }

@@ -65,6 +65,17 @@ class ArticleController extends Controller
 
     function showArticle($url)
     {
-        dd($url);
+        $article = $this->service->getArticle($url);
+        if (!$article) {
+            abort(404);
+        }
+        return view('article.full', [
+            'article' => $article,
+            ]);
+    }
+
+    function fromTagArticle($tag)
+    {
+        dd($this->service->getArticlesFromTag($tag));
     }
 }

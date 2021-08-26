@@ -88,6 +88,8 @@ Route::group([
         ->name('article.index');
     Route::get('/{url}', [App\Http\Controllers\ArticleController::class, 'showArticle'])
         ->name('article.show');
+    Route::get('/tag/{tag}', [App\Http\Controllers\ArticleController::class, 'fromTagArticle'])
+        ->name('article.tag');
 });
 
 Route::get('/contact', function () {
