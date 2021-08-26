@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SitemapXmlController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -94,6 +95,14 @@ Route::group([
         ->name('article.show');
     Route::get('/tag/{tag}', [App\Http\Controllers\ArticleController::class, 'fromTagArticle'])
         ->name('article.tag');
+});
+
+Route::group([
+    'prefix' => '/comment',
+    'middleware' => 'auth',
+], function(){
+    Route::post('/create', [CommentController::class, 'create'])
+        ->name('comment.create');
 });
 
 Route::get('/contact', function () {

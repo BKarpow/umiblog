@@ -60,3 +60,5 @@ Route::group([
     Route::get('/get', [App\Http\Controllers\MenuController::class, 'getMenu'])
         ->name('api.menu.get');
 });
+
+
