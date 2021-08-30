@@ -32,6 +32,11 @@ Vue.component('cart-panel', require('./components/CartPanel.vue').default);
 Vue.component('menu-header', require('./components/MenuHeader.vue').default);
 Vue.component('create-comment', require('./components/CreateComment.vue').default);
 Vue.component('comments', require('./components/Comments.vue').default);
+Vue.component('public-toggle', require('./components/PublicTrigger.vue').default);
+Vue.component('show-articles', require('./components/ShowArticles.vue').default);
+Vue.component('articles-tag', require('./components/ArticlesTag.vue').default);
+Vue.component('articles-main', require('./components/ArticlesMainPage.vue').default);
+Vue.component('Spinner', require('./components/Spinner.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

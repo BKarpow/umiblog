@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Responses\ApiResponse;
+use App\Models\Comment;
 use App\Services\CommentService;
 use Illuminate\Http\Request;
 
@@ -40,6 +41,29 @@ class CommentController extends Controller
             return response()->json(
                 new ApiResponse(false, 'Comments not found')
             );
+        }
+    }
+
+    function index()
+    {
+        return view('panel.comment.index', [
+            'comments' => $this->service->getCommentsFromArticleNoModer(),
+            'isPaginate' => true,
+        ]);
+    }
+
+    function togglePublic($commentId)
+    {
+        $cid = abs( (int)$commentId );
+        $com = Comment::find($cid);
+        if ($com) {
+            $com->moderate = !(bool)$com->moderate;
+            $com->save();
+            return response()->json(
+                new ApiResponse(true, '', ['toggle' => $com->moderate])
+            );
+        } else {
+            abort(404);
         }
     }
 }

@@ -15,6 +15,13 @@ use App\Http\Controllers\CommentController;
 |
 */
 
+Route::get('/fake', function(){
+    $faker = Faker\Factory::create();
+    foreach(range(1,20) as $item) {
+        echo "<img src=\"".$faker->imageUrl(400, 400)."\" /><br />";
+    }
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -42,6 +49,15 @@ Route::group([
 ], function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])
         ->name('home.panel');
+
+    Route::group([
+        'prefix' => '/comment'
+    ], function() {
+        Route::get('/', [CommentController::class, 'index'])
+            ->name('pane;.comment.index');
+        Route::get('/toggle/{commentId}', [CommentController::class, 'togglePublic'])
+            ->name('panel.comment.toggle');
+    });
 
     Route::group([
         'prefix' => '/menu'

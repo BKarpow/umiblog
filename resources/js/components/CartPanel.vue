@@ -1,16 +1,21 @@
 <template>
-    <div class="cartBox">
+    <div class="cart-box">
         <div class="wrapper_cart"
              @mouseover="mouseExists"
              @mouseout="mouseNonExists"
         >
             <div class="cart" ref="cart">
-                <h2 class="cart__title">{{title}}</h2>
+                <h2 class="cart__title">{{titleShort}}</h2>
                 <!-- /.cart__title -->
             </div>
             <!-- /.cart -->
             <div class="cart__back blur" ref="back">
-                <!--  -->
+                <p class="title">
+                    <strong>
+                        {{title}}
+                    </strong>
+                    </p>
+                <!-- /.title -->
                 <p> {{short}} </p>
                 <footer>
                     <a :href="href" class="btn__show-more">
@@ -58,8 +63,21 @@ export default {
         }
     },
     computed:{
+        titleShort(){
+            let title = this.title;
+            const maxLength = 110; // Max len string from title cart
+            if (this.title.length > maxLength) {
+                title = this.title.substring(0, maxLength) + '...';
+            }
+            return title;
+        },
         short(){
-            return this.shortContent.substring(0, 210) + '...'
+            let text = this.shortContent;
+            const maxLength = 166; // Max len string from short content cart
+            if (this.shortContent.length > maxLength) {
+                text = this.shortContent.substring(0, maxLength) + '...'
+            }
+            return text;
         }
     },
 methods: {
@@ -78,8 +96,12 @@ methods: {
 <!-- Use preprocessors via the lang attribute! e.g. <style lang="scss"> -->
 <style lang="scss" scoped>
 
+.title{
+    padding-bottom: .7rem !important;
+    border-bottom: 1px solid #fff;
+}
 
-.cartBox{
+.cart-box{
     color: #fff;
     width: auto;
     display: inline-block;

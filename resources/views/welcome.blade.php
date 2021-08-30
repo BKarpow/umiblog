@@ -7,16 +7,6 @@
 @endsection
 
 @section('content')
-    <div class="article__list">
-        @foreach($articles as $article)
-            <cart-panel
-                title="{{$article->title}}"
-                image="{{$article->image}}"
-                short-content="{{$article->shortContent()}}"
-                href="{{$article->href()}}"
-            >
-            </cart-panel>
-        @endforeach
-    </div>
-    <!-- /.article__list -->
+    <articles-main />
+    <!-- test -->
 @endsection

@@ -5,12 +5,15 @@ namespace App\Services;
 
 
 use App\Models\Article;
+use App\Http\Responses\ApiResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ArticleService extends BaseService
 {
     use StringToolsTrait;
+
+    private int $perPageJson;
 
     public function __construct()
     {
@@ -19,6 +22,17 @@ class ArticleService extends BaseService
         $this->enableOrderBy = true;
         $this->methodOrderBy = 'DESC';
         $this->setColumnOrderBy('created_at');
+        $this->setPerPageJson(8);
+    }
+
+    public function setPerPageJson(int $perPageJson):void
+    {
+        $this->perPageJson = $perPageJson;
+    }
+
+    public function getPerPageJson():int
+    {
+        return $this->perPageJson;
     }
 
     /**
@@ -210,5 +224,70 @@ class ArticleService extends BaseService
                 ->get();
         }
         return $res;
+    }
+
+    public function formatDataFromApi($data):array
+    {
+        $result = [];
+        if ($data) {
+            foreach($data as $item) {
+                $result[] = [
+                    'id' => $item->id,
+                    'title' => $item->title,
+                    'short_content' => $item->shortContent(),
+                    'image' => $item->image,
+                    'href' => $item->href(),
+                ];
+            }
+        }
+        return $result;
+    }
+
+
+    /**
+     * Метод робить підбірку статей для певного тегу, та повертає готову відповідь для АПІ.
+     * Також можна вказати зміщення та кількість статей які увійлуть в підбірку
+     * @param string $tag
+     * @param int $offset
+     * @param int $limit
+     * @return ApiResponse $response
+     * 
+     */
+    public function getArticlesFromTagApi(string $tag, int $offset, int $limit):ApiResponse
+    {
+        $alias = $this->translit($tag);
+        $data = Article::whereJsonContains('tags', $alias)
+            ->orderBy('id', 'desc')
+            ->limit($limit)->offset($offset)->get();
+        if ($data) {
+            $fData = $this->formatDataFromApi($data);
+            return new ApiResponse(true, 'From api tag article', $fData);
+        } else {
+            return new ApiResponse(false, 'No match articles');
+        }
+    }
+
+    /**
+     * Метод робить підбірку статей , та повертає готову відповідь для АПІ.
+     * Також можна вказати зміщення та кількість статей які увійлуть в підбірку
+     * @param int $offset
+     * @param int $limit
+     * @return ApiResponse $response
+     */
+    public function getArticlesFromApi(int $offset, int $limit):ApiResponse
+    {
+        if ($this->isEnableOrderBy()) {
+            $data = Article::orderBy(
+                $this->getColumnOrderBy(), $this->getMethodOrderBy()
+            )->limit($limit)->offset($offset)->get();
+        } else {
+            $data = Article::where('id', '>', 0)->limit($limit)->offset($offset)->get();
+        }
+        if ($data) {
+            $fData = $this->formatDataFromApi($data);
+            return new ApiResponse(true, 'From api tag article', $fData);
+        } else {
+            return new ApiResponse(false, 'No match articles');
+        }
     }
 }

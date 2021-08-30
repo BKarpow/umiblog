@@ -29,14 +29,10 @@ class UserService extends BaseService
      * @param $userId
      * @return bool
      */
-    public function delete($userId)
+    public function deleteUser($userId)
     {
-        $user = User::find(abs(intval($userId)));
-        if (!$user) {
-            return false;
-        }
-        $user->delete();
-        return true;
+        $userId = abs( (int)$userId );
+        return $this->delete(User::class, $userId);
     }
 
     /**

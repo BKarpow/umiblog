@@ -56,7 +56,7 @@
                         </div>
                         <!-- /.btn-group -->
                     </td>
-                    <td>{{$user->created_at->format('d-m-Y в H:i:s')}}</td>
+                    <td>{{$user->date()}}</td>
                 </tr>
             @endforeach
         </tbody>

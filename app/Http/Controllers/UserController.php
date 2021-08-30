@@ -23,7 +23,7 @@ class UserController extends Controller
     }
 
     function delete($user_id) {
-        $ok = $this->userService->delete($user_id);
+        $ok = $this->userService->deleteUser($user_id);
         return redirect()->route('panel.user.index')->with('status', 'Користувача видалено!');
     }
 

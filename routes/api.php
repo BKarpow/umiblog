@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,4 +68,12 @@ Route::group([
 ], function(){
     Route::get('/get', [CommentController::class, 'show'])
         ->name('api.comment.get');
+});
+
+Route::prefix('article')->group(function () {
+    Route::get('/tag', [ArticleController::class, 'fromTagArticleApi'])
+    ->name('api.article.get');
+
+    Route::get('/main', [ArticleController::class, 'fromArticleApi'])
+    ->name('api.article.main');
 });

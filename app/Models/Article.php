@@ -120,4 +120,9 @@ class Article extends Model
         }
         return $tagsString;
     }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Models\Comment', 'article_id', 'id');
+    }
 }

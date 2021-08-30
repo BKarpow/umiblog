@@ -10093,6 +10093,21 @@ body {
   font-weight: bold;
 }
 
+.article__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  row-gap: 0.7rem;
+  -moz-column-gap: 0.7rem;
+       column-gap: 0.7rem;
+  row-gap: 0.7rem;
+  padding: 1rem 0.7rem;
+}
+.article__list .cart-box {
+  margin-top: 0.7rem;
+}
+
 article header {
   padding-bottom: 0.7rem;
   border-bottom: 1px solid #383838;
@@ -10147,14 +10162,4 @@ article footer .tags a:hover {
   background: #383838;
   color: #fff;
   transition: all 0.8s ease;
-}
-
-.article__list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  row-gap: 0.7rem;
-  -moz-column-gap: 0.7rem;
-       column-gap: 0.7rem;
 }

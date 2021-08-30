@@ -10,12 +10,3 @@
 @import "./burger.scss";
 @import "./article.scss";
 
-.article__list{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    row-gap: .7rem;
-    column-gap: .7rem;
-
-}

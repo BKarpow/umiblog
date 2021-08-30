@@ -14,4 +14,18 @@ class Comment extends Model
         return $this->hasOne('App\Models\User', 'id', 'user_id');
     }
 
+    public function article()
+    {
+        return $this->belongsTo('App\Models\Article', 'article_id', 'id');
+    }
+
+    public function date():string
+    {
+        if ($this->created_at) {
+            return $this->created_at->format('d-m-Y H:i');
+        } else {
+            return '';
+        }
+    }
+
 }

@@ -17,10 +17,7 @@ class ArticleController extends Controller
 
     function index()
     {
-        return view('welcome', [
-            'articles' => $this->service->getNewArticle(),
-            'leftMenu' => (new MenuService())->getItemsFromNameMenu('ліве меню'),
-        ]);
+        return view('welcome');
     }
 
     function indexPanel(){
@@ -76,6 +73,32 @@ class ArticleController extends Controller
 
     function fromTagArticle($tag)
     {
-        dd($this->service->getArticlesFromTag($tag));
+        return view('article.tag', ['tag' => $tag]);
+        
+    }
+
+    function fromTagArticleApi(Request $request)
+    {
+        $request->validate([
+            'tag' => 'required|string|min:3|max:50',
+            'limit' => 'required|string|min:1|max:3',
+            'offset' => 'required|min:1',
+        ]);
+        return response()->json(
+            $this->service->getArticlesFromTagApi($request->tag, (int)$request->offset, (int)$request->limit)
+        );
+        
+    }
+
+    function fromArticleApi(Request $request)
+    {
+        $request->validate([
+            'limit' => 'required|string|min:1|max:3',
+            'offset' => 'required|min:1',
+        ]);
+        return response()->json(
+            $this->service->getArticlesFromApi( (int)$request->offset, (int)$request->limit)
+        );
+        
     }
 }

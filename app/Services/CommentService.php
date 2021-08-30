@@ -58,7 +58,17 @@ class CommentService extends BaseService
     {
         $articleId = abs( (int)$articleId );
         return Comment::whereArticleId($articleId)
+            ->whereModerate(true)
             ->orderBy('created_at', 'desc')->get();
+    }
+
+    /**
+     * Поаерне колекцію коментарів всіх коментарів
+     * @return mixed
+     */
+    public function getCommentsFromArticleNoModer():mixed
+    {
+        return Comment::orderBy('created_at', 'desc')->paginate(25);
     }
 
     /**
@@ -75,7 +85,7 @@ class CommentService extends BaseService
                 'avatar' => $item->author->getAvatar(),
                 'author' => $item->author->name,
                 'comment' => $item->comment,
-                'created_at' => $item->created_at->format('d-m-Y H:i'),
+                'created_at' => $item->date(),
             ];
         }
         return $data;

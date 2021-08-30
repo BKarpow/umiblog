@@ -90,4 +90,13 @@ class User extends Authenticatable
     {
         return '';
     }
+
+    public function date():string
+    {
+        if ($this->created_at) {
+            return $this->created_at->format('Y-m-d H:i');
+        } else {
+            return 'none';
+        }
+    }
 }
