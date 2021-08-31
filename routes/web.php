@@ -22,6 +22,15 @@ Route::get('/fake', function(){
     }
 });
 
+Route::get('/lab', function(){
+    $faker = Faker\Factory::create();
+    $data = [];
+    foreach(range(0, 40) as $item) {
+        $data[] = $faker->text(200);
+    }
+    return view('lab', ['data' => $data]);
+})->name('lab');
+
 Route::get('/', function () {
     return view('welcome');
 });

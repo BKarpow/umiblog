@@ -6,37 +6,12 @@
         />
 
         <div class="comments">
-            <ul class="comments__list">
-                <li
-                    v-for="comment in commentsList"
-                    :key="comment.id"
-                    class="comment-item"
-                >
-                    <div class="comment-body">
-                        <div class="comment-avatar">
-                            <img :src="comment.avatar"
-                                 class="img-thumbnail"
-                                 :alt="comment.author" />
-                        </div>
-                        <!-- /.comment-avatar -->
-                        <div class="comment-author">
-                            <strong>{{comment.author}}</strong>
-                        </div>
-                        <!-- /.comment-author -->
-                        <div class="comment-text">
-                            {{comment.comment}}
-                        </div>
-                        <!-- /.comment-text -->
-                        <div class="comment-meta">
-                            <small> {{comment.created_at}} </small>
-                        </div>
-                        <!-- /.comment-meta -->
-                    </div>
-                    <!-- /.comment-body -->
-                </li>
-                <!-- /.comment-item -->
-            </ul>
-            <!-- /.comments__list -->
+            <CommentsList 
+                :comments="commentsList" 
+                :load="load" 
+                @more="fetchComments"
+            />
+            
         </div>
         <!-- /.comments -->
     </div>
@@ -88,16 +63,30 @@ export default {
     data(){
         return {
             commentsList: [],
+            limit: 20,
+            offset: 0,
+            load: false,
         }
     },
     methods:{
+        getFetchUri(uri) {
+            let uriParams = uri + '?'
+            uriParams += 'article_id=' + this.articleId + '&';
+            uriParams += 'limit=' + this.limit + '&';
+            uriParams += 'offset=' + this.offset;
+            return uriParams
+        },
         fetchComments(){
-            route('api.comment.get')
+            this.load = true;
+            route('api.comment.fetch')
             .then(ro => {
-                const uri = ro.data.uri + '?article_id=' + this.$props.articleId;
-                axios.get(uri).then(resp => {
+                axios.get(this.getFetchUri(ro.data.uri)).then(resp => {
                     if (resp.data.ok) {
-                        this.commentsList = resp.data.data;
+                        this.commentsList = _.concat(this.commentsList, resp.data.data);
+                        this.load = false;
+                        this.offset += this.limit;
+                    } else {
+                        console.error(resp.data.message)
                     }
                 }).catch(err => console.log(resp))
             }).catch(err => console.log(resp))

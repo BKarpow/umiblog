@@ -10018,10 +10018,6 @@ h3 {
     border-color: #dee2e6;
   }
 }
-body {
-  font-family: "Comfortaa", cursive;
-}
-
 .roboto {
   font-family: "Roboto", sans-serif;
 }
@@ -10034,6 +10030,17 @@ body {
   /* Браузер сначала попробует найти шрифт локально */
   src: local("summernote"), url("/fonts/summernote.woff2") format("woff2"), url("/fonts/summernote.woff") format("woff");
 }
+@font-face {
+  font-family: "Mont";
+  font-style: normal;
+  font-weight: 400;
+  /* Браузер сначала попробует найти шрифт локально */
+  src: local("MontserratAlternates"), url("/fonts/mont.woff2") format("woff2"), url("/fonts/mont.woff") format("woff");
+}
+body {
+  font-family: "Mont", cursive;
+}
+
 /* Burger */
 .burger_active {
   visibility: visible !important;
@@ -10162,5 +10169,11 @@ article footer .tags a:hover {
   background: #383838;
   color: #fff;
   transition: all 0.8s ease;
+}
+
+.avatar__item {
+  -webkit-clip-path: circle(2.1rem);
+          clip-path: circle(2.1rem);
+  transform: translateX(-0.7rem);
 }
 

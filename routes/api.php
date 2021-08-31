@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ArticleController;
+use App\Services\AvatarService;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,6 +69,8 @@ Route::group([
 ], function(){
     Route::get('/get', [CommentController::class, 'show'])
         ->name('api.comment.get');
+    Route::get('/fetch', [CommentController::class, 'getCommentsFromAjaxApi'])
+        ->name('api.comment.fetch');
 });
 
 Route::prefix('article')->group(function () {
@@ -77,3 +80,14 @@ Route::prefix('article')->group(function () {
     Route::get('/main', [ArticleController::class, 'fromArticleApi'])
     ->name('api.article.main');
 });
+
+
+// AVAYAT
+
+Route::get('/noavatar/{name}', function($name){
+    $name = urldecode($name);
+    $name = strip_tags( trim($name) );
+    $name = (empty($name)) ? 'None' : $name; 
+     AvatarService::headerPng();
+    AvatarService::generatePngAvatar($name);
+})->name('noavatar');

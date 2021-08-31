@@ -88,7 +88,11 @@ class User extends Authenticatable
      */
     public function getAvatar():string
     {
-        return '';
+        if (empty($this->avatar)) {
+            return route('noavatar', ['name'=>$this->name]);
+        } else {
+            return $this->avatar;
+        }
     }
 
     public function date():string

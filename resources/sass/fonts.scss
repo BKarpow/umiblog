@@ -1,10 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;700&family=Roboto:wght@300;400;500&display=swap');
 
-body{
-    font-family: 'Comfortaa', cursive;
-
-}
-
 .roboto{
     font-family: 'Roboto', sans-serif;
 }
@@ -20,4 +15,21 @@ body{
     url("/fonts/summernote.woff2") format("woff2"),
         /* Если браузер не поддерживает woff2, загрузит woff */
     url("/fonts/summernote.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Mont";
+    font-style: normal;
+    font-weight: 400;
+    /* Браузер сначала попробует найти шрифт локально */
+    src: local("MontserratAlternates"),
+         /* Если не получилось, загрузит woff2 */
+         url("/fonts/mont.woff2") format("woff2"),
+         /* Если браузер не поддерживает woff2, загрузит woff */
+         url("/fonts/mont.woff") format("woff");
+  }
+
+  body{
+    font-family: 'Comfortaa', cursive;
+
 }

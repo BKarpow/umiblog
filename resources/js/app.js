@@ -37,6 +37,8 @@ Vue.component('show-articles', require('./components/ShowArticles.vue').default)
 Vue.component('articles-tag', require('./components/ArticlesTag.vue').default);
 Vue.component('articles-main', require('./components/ArticlesMainPage.vue').default);
 Vue.component('Spinner', require('./components/Spinner.vue').default);
+Vue.component('Comment', require('./components/Comment.vue').default);
+Vue.component('CommentsList', require('./components/CommentsList.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

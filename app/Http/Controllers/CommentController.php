@@ -66,4 +66,20 @@ class CommentController extends Controller
             abort(404);
         }
     }
+
+    function getCommentsFromAjaxApi(Request $request)
+    {
+        $request->validate([
+            'article_id' => 'required|exists:articles,id',
+            'limit' => 'required',
+            'offset' => 'required',
+        ]);
+        return response()->json(
+            $this->service->getCommentsFromArticleIdApi(
+                abs( (int)$request->article_id ),
+                (int) $request->limit,
+                (int) $request->offset
+            )
+        );
+    }
 }

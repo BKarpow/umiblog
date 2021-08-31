@@ -4,6 +4,7 @@
 namespace App\Services;
 
 use App\Models\Comment;
+use App\Http\Responses\ApiResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -63,6 +64,35 @@ class CommentService extends BaseService
     }
 
     /**
+     * Метод поверне апі колекцію коментарів для певної статті. 
+     * @param int $articleId - ід статті
+     * @param int $limit - скільки коментарів за один запит
+     * @param int $offset - зміщення по списку коментарів
+     * @return ApiResponse
+     */
+    public function getCommentsFromArticleIdApi(int $articleId, int $limit, int $offset):ApiResponse
+    {
+        $data = [];
+        if ($this->isEnableOrderBy()) {
+            $data = Comment::whereArticleId($articleId)
+                ->orderBy($this->getColumnOrderBy(), $this->getMethodOrderBy())
+                ->limit($limit)->offset($offset)
+                ->get();
+        } else {
+            $data = Comment::whereArticleId($articleId)
+                ->limit($limit)->offset($offset)
+                ->get();
+        }
+
+        if ($data) {
+            $data = $this->formatFromApi($data);
+            return new ApiResponse(true, 'Get comments from article', $data);
+        } else {
+            return new ApiResponse(false, 'Error getting comments from article id '.$articleId);
+        }
+    }
+
+    /**
      * Поаерне колекцію коментарів всіх коментарів
      * @return mixed
      */
@@ -85,7 +115,7 @@ class CommentService extends BaseService
                 'avatar' => $item->author->getAvatar(),
                 'author' => $item->author->name,
                 'comment' => $item->comment,
-                'created_at' => $item->date(),
+                'date' => $item->date(),
             ];
         }
         return $data;
