@@ -1,7 +1,8 @@
 <template>
   <div :id="commentID" class="comment__item">
     <div class="avatar">
-        <img :src="authorAvatar" :alt="authorName" class="avatar__item img_fluid" />
+        {{authorAvatar}}
+<!--        <img :src="authorAvatar" :alt="authorName" class="avatar__item img_fluid" />-->
     </div>
     <!-- /.avatar -->
     <div class="title">

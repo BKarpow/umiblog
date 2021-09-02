@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\AvatarService;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -89,7 +90,7 @@ class User extends Authenticatable
     public function getAvatar():string
     {
         if (empty($this->avatar)) {
-            return route('noavatar', ['name'=>$this->name]);
+            return AvatarService::getSvgAvatar($this->name);
         } else {
             return $this->avatar;
         }

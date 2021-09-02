@@ -13,7 +13,13 @@ class AvatarService
   static public function headerPng():void
   {
     header('Content-type: image/png');
-  } 
+  }
+
+  static public function getSvgAvatar(string $nameUser):string
+  {
+      $av = new GenerateAvatar();
+      return $av->getSvgAvatar($nameUser);
+  }
 
   static public function generatePngAvatar(string $nameUser):void
   {
