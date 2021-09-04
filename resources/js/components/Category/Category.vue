@@ -39,11 +39,12 @@
         </div>
 
         <h5>{{categories.name}}</h5>
+
+        <p>{{categories.description}}</p>
         <div class="my-1 d-flex justify-content-end">
             <EditDeleteButtons @edit="getModal" @delete="onDelete"/>
         </div>
         <!-- /.my-1 -->
-        <p>{{categories.description}}</p>
 
     </div>
     <!-- /.categoryBox -->
@@ -150,11 +151,21 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.categoryBox{
+    margin: 0 .3rem;
+    padding: .3rem .2rem;
+    border: 1px solid #383838;
+    border-radius: 11px;
+}
 h5{
     font-weight: bold;
+    line-height: 18px;
+    padding: .3rem;
+    border-bottom: 1px solid #111;
+    margin-bottom: 0;
 }
 p{
-    color: #ccc;
-    font-size: 13px;
+    padding-top: .3rem;
+    color: #333;
 }
 </style>

@@ -22,7 +22,7 @@ import Swal from "sweetalert2";
 export default {
     data(){
         return {
-            sizeIcon: 32,
+            sizeIcon: 16,
         }
     },
     methods:{

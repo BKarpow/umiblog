@@ -48,7 +48,11 @@
                 <slot></slot>
             </div>
             <ul class="categories">
-                <li v-for="cat in categories" :key="cat.id">
+                <li v-if="!categories.length" class="empty-category">
+                    <h5>Для цієї секції ще не створено категорій.</h5>
+                    <p>Для створення натисніть "+".</p>
+                </li>
+                <li v-else v-for="cat in categories" :key="cat.id">
                    <CategoryCategory
                        :categories="cat"
                        @success="$emit('success', true)"
@@ -63,6 +67,19 @@
 </template>
 
 <style scoped lang="scss">
+.empty-category{
+    h5{
+        font-weight: bold;
+        line-height: 18px;
+        padding: .3rem;
+        border-bottom: 1px solid #111;
+        margin-bottom: 0;
+    }
+    p{
+        padding-top: .3rem;
+        color: #333;
+    }
+}
 .section-product{
     padding: 0;
     margin: .35rem;
@@ -78,6 +95,7 @@
         color: #fff;
         display: flex;
         justify-content: space-between;
+        align-items: center;
     }
     .section-categories{
         padding: .5rem;

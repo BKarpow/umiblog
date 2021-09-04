@@ -7,6 +7,7 @@
         </div>
         <!-- /.btn-group my-2 -->
         <div class="sections-list">
+            <Spinner v-if="!sections.length" />
             <SectionSection
                 v-if="sections.length"
                 v-for="section in sections"
@@ -35,6 +36,7 @@
 <style scoped lang="scss">
 .sections-list{
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
 }
 </style>

@@ -2144,6 +2144,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -3060,7 +3061,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      sizeIcon: 32
+      sizeIcon: 16
     };
   },
   methods: {
@@ -3718,6 +3719,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -3780,6 +3783,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -9222,7 +9243,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "h5[data-v-3b2330b4] {\n  font-weight: bold;\n}\np[data-v-3b2330b4] {\n  color: #ccc;\n  font-size: 13px;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".categoryBox[data-v-3b2330b4] {\n  margin: 0 0.3rem;\n  padding: 0.3rem 0.2rem;\n  border: 1px solid #383838;\n  border-radius: 11px;\n}\nh5[data-v-3b2330b4] {\n  font-weight: bold;\n  line-height: 18px;\n  padding: 0.3rem;\n  border-bottom: 1px solid #111;\n  margin-bottom: 0;\n}\np[data-v-3b2330b4] {\n  padding-top: 0.3rem;\n  color: #333;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -9390,7 +9411,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".sections-list[data-v-ecf3a5a4] {\n  display: flex;\n  flex-wrap: wrap;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".sections-list[data-v-ecf3a5a4] {\n  display: flex;\n  justify-content: center;\n  flex-wrap: wrap;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -9414,7 +9435,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".section-product[data-v-3e15e480] {\n  padding: 0;\n  margin: 0.35rem;\n  border: 1px solid #383d41;\n  border-radius: 9px;\n  width: 360px;\n}\n.section-product .section-title[data-v-3e15e480] {\n  padding: 0.6rem;\n  font-weight: bold;\n  font-size: 22px;\n  width: 100%;\n  background: #111;\n  color: #fff;\n  display: flex;\n  justify-content: space-between;\n}\n.section-product .section-categories[data-v-3e15e480] {\n  padding: 0.5rem;\n}\n.section-product .section-categories ul[data-v-3e15e480] {\n  margin-top: 0.7rem;\n  display: flex;\n  padding: 0;\n  flex-direction: column;\n  row-gap: 0.5rem;\n}\n.section-product .section-categories ul li[data-v-3e15e480] {\n  display: block;\n  font-weight: bold;\n  cursor: pointer;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".empty-category h5[data-v-3e15e480] {\n  font-weight: bold;\n  line-height: 18px;\n  padding: 0.3rem;\n  border-bottom: 1px solid #111;\n  margin-bottom: 0;\n}\n.empty-category p[data-v-3e15e480] {\n  padding-top: 0.3rem;\n  color: #333;\n}\n.section-product[data-v-3e15e480] {\n  padding: 0;\n  margin: 0.35rem;\n  border: 1px solid #383d41;\n  border-radius: 9px;\n  width: 360px;\n}\n.section-product .section-title[data-v-3e15e480] {\n  padding: 0.6rem;\n  font-weight: bold;\n  font-size: 22px;\n  width: 100%;\n  background: #111;\n  color: #fff;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.section-product .section-categories[data-v-3e15e480] {\n  padding: 0.5rem;\n}\n.section-product .section-categories ul[data-v-3e15e480] {\n  margin-top: 0.7rem;\n  display: flex;\n  padding: 0;\n  flex-direction: column;\n  row-gap: 0.5rem;\n}\n.section-product .section-categories ul li[data-v-3e15e480] {\n  display: block;\n  font-weight: bold;\n  cursor: pointer;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -49538,6 +49559,8 @@ var render = function() {
     _vm._v(" "),
     _c("h5", [_vm._v(_vm._s(_vm.categories.name))]),
     _vm._v(" "),
+    _c("p", [_vm._v(_vm._s(_vm.categories.description))]),
+    _vm._v(" "),
     _c(
       "div",
       { staticClass: "my-1 d-flex justify-content-end" },
@@ -49547,9 +49570,7 @@ var render = function() {
         })
       ],
       1
-    ),
-    _vm._v(" "),
-    _c("p", [_vm._v(_vm._s(_vm.categories.description))])
+    )
   ])
 }
 var staticRenderFns = [
@@ -51071,6 +51092,8 @@ var render = function() {
       "div",
       { staticClass: "sections-list" },
       [
+        !_vm.sections.length ? _c("Spinner") : _vm._e(),
+        _vm._v(" "),
         _vm._l(_vm.sections, function(section) {
           return _vm.sections.length
             ? _c(
@@ -51262,24 +51285,32 @@ var render = function() {
       _c(
         "ul",
         { staticClass: "categories" },
-        _vm._l(_vm.categories, function(cat) {
-          return _c(
-            "li",
-            { key: cat.id },
-            [
-              _c("CategoryCategory", {
-                attrs: { categories: cat },
-                on: {
-                  success: function($event) {
-                    return _vm.$emit("success", true)
-                  }
-                }
+        [
+          !_vm.categories.length
+            ? _c("li", { staticClass: "empty-category" }, [
+                _c("h5", [_vm._v("Для цієї секції ще не створено категорій.")]),
+                _vm._v(" "),
+                _c("p", [_vm._v('Для створення натисніть "+".')])
+              ])
+            : _vm._l(_vm.categories, function(cat) {
+                return _c(
+                  "li",
+                  { key: cat.id },
+                  [
+                    _c("CategoryCategory", {
+                      attrs: { categories: cat },
+                      on: {
+                        success: function($event) {
+                          return _vm.$emit("success", true)
+                        }
+                      }
+                    })
+                  ],
+                  1
+                )
               })
-            ],
-            1
-          )
-        }),
-        0
+        ],
+        2
       )
     ])
   ])
