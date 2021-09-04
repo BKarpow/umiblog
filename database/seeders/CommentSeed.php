@@ -21,7 +21,7 @@ class CommentSeed extends Seeder
         if ($articles) {
             foreach($articles as $article) {
                 if ($article->id) {
-                    foreach(range(1, 200) as $item) {
+                    foreach(range(1, 45) as $item) {
                         Comment::insert([
                             'comment' => $faker->text,
                             'article_id' => $article->id,

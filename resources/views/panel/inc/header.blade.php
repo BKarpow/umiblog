@@ -16,6 +16,14 @@
                 </li>
 
                 <li class="nav-item">
+                    <a href="{{route('panel.product.section.index')}}" class="nav-link">
+                        Секції товарів
+                    </a>
+                    <!-- /.nav-link -->
+                </li>
+                <!-- /.nav-item -->
+
+                <li class="nav-item">
                     <a href="{{route('panel.article.index')}}" class="nav-link">
                         Статті
                     </a>

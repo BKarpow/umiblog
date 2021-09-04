@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SitemapXmlController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ProductSectionController;
+use App\Http\Controllers\ProductCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,10 +62,36 @@ Route::group([
         ->name('home.panel');
 
     Route::group([
+        'prefix' => '/category-product'
+    ], function(){
+        Route::post('/create', [ProductCategoryController::class, 'create'])
+            ->name('panel.api.createCategory');
+        Route::post('/update', [ProductCategoryController::class, 'update'])
+            ->name('panel.api.updateCategory');
+        Route::post('/delete', [ProductCategoryController::class, 'delete'])
+            ->name('panel.api.deleteCategory');
+    });
+
+    Route::group([
+        'prefix' => '/product-section'
+    ], function() {
+        Route::get('/', [ProductSectionController::class, 'index'])
+            ->name('panel.product.section.index');
+        Route::get('/getApi', [ProductSectionController::class, 'getAllApi'])
+            ->name('panel.api.getSections');
+        Route::post('/create', [ProductSectionController::class, 'create'])
+            ->name('panel.api.createSection');
+        Route::post('/update', [ProductSectionController::class, 'update'])
+            ->name('panel.api.updateSection');
+        Route::post('/delete', [ProductSectionController::class, 'delete'])
+            ->name('panel.api.deleteSection');
+    });
+
+    Route::group([
         'prefix' => '/comment'
     ], function() {
         Route::get('/', [CommentController::class, 'index'])
-            ->name('pane;.comment.index');
+            ->name('panel.comment.index');
         Route::get('/toggle/{commentId}', [CommentController::class, 'togglePublic'])
             ->name('panel.comment.toggle');
     });

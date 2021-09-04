@@ -18,6 +18,14 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+
+        $admin = new User();
+        $admin->name = 'Bogdan';
+        $admin->phone = '+380932812555';
+        $admin->email = 'dexby101@gmail.com';
+        $admin->password = Hash::make('123123123');
+        $admin->role = User::ROLE_ADMIN;
+        $admin->save();
         $faker = Faker\Factory::create();
         foreach(range(1, 40) as $item) {
             DB::table('users')->insert([
@@ -29,6 +37,6 @@ class UserSeeder extends Seeder
                 'created_at' => now(),
             ]);
         }
-        
+
     }
 }

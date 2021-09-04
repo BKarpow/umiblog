@@ -145,6 +145,7 @@ class GenerateAvatar {
 		$bodySvg = '';
 		$bodySvg .= Svg::rectTag('#'.$color['b'], $size);
 		$bodySvg .= Svg::textTag($twoSymbols, '#'.$color['t'], $size);
+		Svg::setCssClass('avatar__svg');
 		return Svg::svgTag($bodySvg, (string)$size);
 	}
 

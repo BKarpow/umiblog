@@ -6,6 +6,18 @@ namespace App\Services;
 
 trait StringToolsTrait
 {
+
+    /**
+     * Міняє посилання в тексті на вказаний текст
+     * @param string $text
+     * @param string $replace - default <link>
+     * @return string
+     */
+    public function hrefReplace(string $text, string $replace = '<link>'):string
+    {
+        return preg_replace('#(http|https)\:\/\/[^\s]+?#si','\\1://'. $replace, $text);
+    }
+
     function translit(string $string):string
     {
         $chars_arr = array(
@@ -211,6 +223,7 @@ trait StringToolsTrait
      */
     public function correctStoragePath(string $path):string
     {
-        return preg_replace('#^public\/#i', '/storage/', $path);
+        $path = preg_replace('#^public\/#i', '/storage/', $path);
+        return str_replace('//', '/', $path);
     }
 }

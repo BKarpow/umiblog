@@ -18,7 +18,7 @@ class ArticleSeed extends Seeder
     {
         $faker = Faker\Factory::create();
         $service = new ArticleService;
-        foreach(range(1, 500) as $item) {
+        foreach(range(1, 50) as $item) {
             $title = $faker->text(150);
             $content = $faker->text ."<br><img src=\"".$faker->imageUrl(400, 400)."\"><br>".$faker->text(10000);
             Article::insert([

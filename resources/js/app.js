@@ -39,6 +39,18 @@ Vue.component('articles-main', require('./components/ArticlesMainPage.vue').defa
 Vue.component('Spinner', require('./components/Spinner.vue').default);
 Vue.component('Comment', require('./components/Comment.vue').default);
 Vue.component('CommentsList', require('./components/CommentsList.vue').default);
+//SectionsComponent
+Vue.component('SectionSection', require('./components/Section/Section.vue').default);
+Vue.component('SectionCreate', require('./components/Section/CreateNew.vue').default);
+Vue.component('SectionCreateCategory', require('./components/Section/CreateCategory.vue').default);
+Vue.component('section-main', require('./components/Section/Main.vue').default);
+
+//Category
+Vue.component('CategoryCategory', require('./components/Category/Category.vue').default);
+
+Vue.component('EditDeleteButtons', require('./components/EditDeleteButtons.vue').default);
+
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

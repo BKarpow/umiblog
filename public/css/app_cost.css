@@ -10038,7 +10038,7 @@ h3 {
   src: local("MontserratAlternates"), url("/fonts/mont.woff2") format("woff2"), url("/fonts/mont.woff") format("woff");
 }
 body {
-  font-family: "Mont", cursive;
+  font-family: "Comfortaa", cursive;
 }
 
 /* Burger */
@@ -10175,5 +10175,10 @@ article footer .tags a:hover {
   -webkit-clip-path: circle(2.1rem);
           clip-path: circle(2.1rem);
   transform: translateX(-0.7rem);
+}
+
+.avatar__svg {
+  -webkit-clip-path: circle(2rem);
+          clip-path: circle(2rem);
 }
 

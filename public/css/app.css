@@ -10176,3 +10176,8 @@ article footer .tags a:hover {
           clip-path: circle(2.1rem);
   transform: translateX(-0.7rem);
 }
+
+.avatar__svg {
+  -webkit-clip-path: circle(2rem);
+          clip-path: circle(2rem);
+}

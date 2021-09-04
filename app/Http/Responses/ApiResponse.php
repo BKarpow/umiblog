@@ -12,6 +12,7 @@ class ApiResponse
     public string $message;
     public array $data;
     public int $length;
+    public bool $emptySet;
 
     public function __construct(bool $ok = false, string $message = '', array $data = [])
     {
@@ -21,6 +22,7 @@ class ApiResponse
         $this->setCode(200);
         $this->setLength(0);
         $this->setData($data);
+        $this->setEmptySet(false);
     }
 
     /**
@@ -77,6 +79,9 @@ class ApiResponse
     public function setData(array $data): void
     {
         $this->setLength(count($data));
+        if ($this->getLength() === 0) {
+            $this->setEmptySet(true);
+        }
         $this->data = $data;
     }
 
@@ -117,6 +122,23 @@ class ApiResponse
      */
     public function setLength(int $length): void
     {
+        $length = abs( $length );
         $this->length = $length;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isEmptySet(): bool
+    {
+        return $this->emptySet;
+    }
+
+    /**
+     * @param bool $emptySet
+     */
+    public function setEmptySet(bool $emptySet): void
+    {
+        $this->emptySet = $emptySet;
     }
 }

@@ -86,6 +86,7 @@ export default {
                         title: 'Фото завантажено!',
                         timer:956
                     })
+                    this.$emit('success', this.avatars);
 
                 }
             })

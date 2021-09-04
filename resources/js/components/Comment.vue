@@ -1,7 +1,7 @@
 <template>
   <div :id="commentID" class="comment__item">
-    <div class="avatar">
-        {{authorAvatar}}
+    <div class="avatar" v-html="authorAvatar">
+
 <!--        <img :src="authorAvatar" :alt="authorName" class="avatar__item img_fluid" />-->
     </div>
     <!-- /.avatar -->
@@ -53,6 +53,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.avatar{
+    svg{
+        clip-path: circle(1.2rem);
+    }
+
+}
 p{
   margin-top: .6rem;
   line-height: 15px;
